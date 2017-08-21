@@ -1,0 +1,131 @@
+# adapted from https://github.com/headmelted/vscode/blob/a57e613e9e7d2fdb3917502cb98bbd1eaef8c058/.travis.yml
+
+language: node_js
+
+# TODO: update this with the correct repo code
+env:
+  global:
+    - secure: PIeU/NiHfhbNRokt1vr7niqgCI1fHOji0lIxszPiuY+h7t5aQfokp91MCfhcy9mj7bdqotXoZiw3J5V/F9YuR0Uz4ShQ9Mwyc4R9XN5jK0Q6HjQPqGRSGvrnBiavQSjP11MoAEpQzPqRcBNFMfWbMUzpWO8DUruS/R6P4y9D6+8+MSZ/p1LDqOaF/zHnkhFzFSuUOdlpDVGddP83qyXEu7qxFEwbsVW0jyx52dj9nmY2dy2du6R8BEgYQTLVL2yDq5j0Fbot+I6n3AntX15qsNrnJW5c6oAGUcM/2OCxZV4aRL2+CDvrHcCMCSAY+feeUGl2ZDLHMiwK/Ogmmb/NvSE7lTlUmY07cwgUAvHm2/jK7YqPXR1yIy9r1G6GVKdF9t6ctWK7LfLPzKP+2O38hwTflCx9akggSxsSeBXPL/b9aMaVgZbqDyb/Vje2Rw4SgicBVwRg/JVVSmZtdoCWaeAgprcuGCD8bAAfly7c7Aj5LGamBtrWaee0r3GJJGf4UMLeyVSDnSGbdz/clZuyYqxCa7r6McDfhwK5HrTqLCt/zYYVqd9Dum3BunAV4NDwI9ReRJBC3XGDfsoqKMaC5xwLhyRAwaOevJyiSdaxdblUmiuSf/fi26LqT59PrN/TfY0LnCnmG8QGMpOFSkH5EghWdS+z/jrE7ErNMc6/1a8=
+
+# define OSes with all settings so the build matrix is shorter
+include: &osx
+  sudo: false
+  os: osx
+  addons:
+    apt:
+      sources: 
+      - 'ubuntu-toolchain-r-test'
+      packages:
+      - gcc-4.9
+      - g++-4.9  
+  env:
+  - LABEL=OSX
+    ARCH=x64
+
+include: &linux
+  sudo: false
+  os: linux
+  addons:
+    apt:
+      sources: 
+      - 'ubuntu-toolchain-r-test'
+      packages:
+      - gcc-4.9
+      - g++-4.9  
+  env:
+  - LABEL=LINUX
+    ARCH=x64
+    EXPORT_CXX=g++-4.9
+    EXPORT_CC=gcc-4.9
+
+include: &arm
+  sudo: required
+  os: linux
+  addons:
+    apt:
+      sources: 
+      - 'ubuntu-toolchain-r-test'
+      packages:
+      - gcc-4.9
+      - g++-4.9  
+      - gcc-arm-linux-gnueabihf
+      - g++-arm-linux-gnueabihf
+  env:
+  - LABEL=ARM
+    ARCH=arm
+    EXPORT_CXX=g++-4.9
+    EXPORT_CC=gcc-4.9
+    EXPORT_PRE_CXX=arm-linux-gnueabihf-g++
+    EXPORT_PRE_CC=arm-linux-gnueabihf-gcc
+    EXPORT_PRE_LINK=arm-linux-gnueabihf-g++
+    EXPORT_PRE_AR=arm-linux-gnueabihf-ar
+
+matrix:
+  include:
+  - <<: *osx
+    node_js: 4
+  - <<: *osx
+    node_js: 6
+  - <<: *osx
+    node_js: 7
+  - <<: *osx
+    node_js: 8
+  
+  - <<: *linux
+    node_js: 4
+  - <<: *linux
+    node_js: 6
+  - <<: *linux
+    node_js: 7
+  - <<: *linux
+    node_js: 8
+  
+  - <<: *arm
+    node_js: 4
+  - <<: *arm
+    node_js: 6
+  - <<: *arm
+    node_js: 7
+  - <<: *arm
+    node_js: 8
+    
+before_install:
+# Export neccessary env vars so gyp finds the compilers
+- if [[ -n "${EXPORT_CXX}" ]]; then export CXX="${EXPORT_CXX}"; fi
+- if [[ -n "${EXPORT_CC}" ]]; then export CC="${EXPORT_CC}"; fi
+# get commit message
+- COMMIT_MESSAGE=$(git show -s --format=%B $TRAVIS_COMMIT | tr -d '\n')
+# put local node_modules on PATH
+- export PATH=./node_modules/.bin/:$PATH
+# put global node-gyp on PATH
+- npm install -g node-gyp
+
+- PUBLISH_BINARY=false
+# if we are building a tag then publish
+- if [[ $TRAVIS_BRANCH == `git describe --tags --always HEAD` ]]; then PUBLISH_BINARY=true; fi;
+## or if we put [publish binary] in the commit message
+#- if test "${COMMIT_MESSAGE#*'[publish binary]'}" != "$COMMIT_MESSAGE"; then PUBLISH_BINARY=true; fi;
+
+install:
+# install dependencies
+- npm install --production
+
+script:
+# for cross-compilation x64=>ARM make the required compilers known
+- if [[ -n "${EXPORT_PRE_CXX}" ]]; then export CXX="${EXPORT_PRE_CXX}"; fi
+- if [[ -n "${EXPORT_PRE_CC}" ]]; then export CC="${EXPORT_PRE_CC}"; fi
+- if [[ -n "${EXPORT_PRE_AR}" ]]; then export AR="${EXPORT_PRE_AR}"; fi
+- if [[ -n "${EXPORT_PRE_LINK}" ]]; then export LINK="${EXPORT_PRE_LINK}"; fi
+- node-pre-gyp configure --target_arch=${ARCH}
+- node-pre-gyp build --target_arch=${ARCH}
+- |
+  if [[ $PUBLISH_BINARY == true ]]; then
+    echo "publishing binary"
+    node-pre-gyp package --target_arch=${ARCH}
+    node-pre-gyp-github publish --release
+  fi
+- node-pre-gyp clean --target_arch=${ARCH}
+- node-gyp clean --target_arch=${ARCH}
+
+after_success:
+- echo "all done!"
