@@ -4,7 +4,8 @@
             "target_name": "<(module_name)",
             "sources": [
                 "src/node-aes-ccm.cc",
-                "src/node-aes-gcm.cc"
+                "src/node-aes-gcm.cc",
+                "src/addon.cc"
             ],
             'conditions': [
                 [

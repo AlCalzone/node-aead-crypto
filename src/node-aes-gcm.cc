@@ -24,6 +24,8 @@
 #include <nan.h>
 #include <openssl/evp.h>
 
+#include "node-aes-gcm.h"
+
 // see https://wiki.openssl.org/index.php/EVP_Authenticated_Encryption_and_Decryption
 // for details on the implementation
 
@@ -122,7 +124,7 @@ NAN_METHOD(gcm::Encrypt) {
 	
 	// if we have additional authenticated data, provide it
 	if (hasAuthData) {
-		EVP_EncryptUpdate(ctx, NULL, &outl, aad, aad_len)
+		EVP_EncryptUpdate(ctx, NULL, &outl, aad, aad_len);
 	}
 	
 	// Encrypt plaintext
@@ -131,7 +133,7 @@ NAN_METHOD(gcm::Encrypt) {
 
 	// Finalize the encryption
 	EVP_EncryptFinal_ex(ctx, ciphertext + outl, &outl);
-	ciphertext_len += len;
+	ciphertext_len += outl;
 
 	// Get the authentication tag
 	EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_GET_TAG, AUTH_TAG_LEN, auth_tag);
@@ -237,7 +239,7 @@ NAN_METHOD(gcm::Decrypt) {
 	
 	// if we have additional authenticated data, provide it
 	if (hasAuthData) {
-		EVP_DecryptUpdate(ctx, NULL, &outl, aad, aad_len)
+		EVP_DecryptUpdate(ctx, NULL, &outl, aad, aad_len);
 	}
 
 	// Decrypt ciphertext

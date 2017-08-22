@@ -3,7 +3,11 @@
 
 #include <nan.h>
 
-NAN_METHOD(CcmEncrypt);
-NAN_METHOD(CcmDecrypt);
+namespace ccm {
+
+    NAN_METHOD(Encrypt);
+    NAN_METHOD(Decrypt);
+
+}
 
 #endif

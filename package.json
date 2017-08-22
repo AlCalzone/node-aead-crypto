@@ -4,7 +4,7 @@
   "description": "Node.js module which provides OpenSSL bindings for AEAD ciphers",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha -R spec",
     "prepublish": "npm ls",
     "install": "node-pre-gyp install --fallback-to-build"
   },
@@ -44,8 +44,13 @@
     "package_name": "{node_abi}-{platform}-{arch}.tar.gz",
     "host": "https://github.com/AlCalzone/node-aead-crypto/releases/download/",
     "remote_path": "v{version}"
-  }  ,
+  },
   "engines": {
     "node": ">= 0.12"
+  },
+  "devDependencies": {
+    "buffertools": "^2.1.6",
+    "mocha": "^3.5.0",
+    "should": "^11.2.1"
   }
 }

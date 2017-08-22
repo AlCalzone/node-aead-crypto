@@ -3,6 +3,8 @@
 #include <node_buffer.h> // TODO: why do we need this?
 #include <openssl/evp.h>
 
+#include "node-aes-ccm.h"
+
 // see https://wiki.openssl.org/index.php/EVP_Authenticated_Encryption_and_Decryption
 // for details on the implementation
 
@@ -68,7 +70,7 @@ NAN_METHOD(ccm::Encrypt) {
 		aad_len = Buffer::Length(info[3]);
 	}
 	// Make a authentication tag buffer
-	const int auth_tag_len = info[4]->NumberValue();
+	const int auth_tag_len = info[4]->Int32Value();
 	unsigned char *auth_tag = new unsigned char[auth_tag_len];
 	
 		
@@ -94,7 +96,7 @@ NAN_METHOD(ccm::Encrypt) {
 	// provide it and the the plaintext length
 	if (hasAuthData) {
 		EVP_EncryptUpdate(ctx, NULL, &outl, NULL, plaintext_len);
-		EVP_EncryptUpdate(ctx, NULL, &outl, aad, aad_len)
+		EVP_EncryptUpdate(ctx, NULL, &outl, aad, aad_len);
 	}
 
 	// Encrypt plaintext
@@ -103,7 +105,7 @@ NAN_METHOD(ccm::Encrypt) {
 
 	// Finalize the encryption
 	EVP_EncryptFinal_ex(ctx, ciphertext + outl, &outl);
-	ciphertext_len += len;
+	ciphertext_len += outl;
 
 	// Get the authentication tag
 	EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_CCM_GET_TAG, auth_tag_len, auth_tag);
@@ -213,7 +215,7 @@ NAN_METHOD(ccm::Decrypt) {
 	// provide it and the the ciphertext length
 	if (hasAuthData) {
 		EVP_DecryptUpdate(ctx, NULL, &outl, NULL, ciphertext_len);
-		EVP_DecryptUpdate(ctx, NULL, &outl, aad, aad_len)
+		EVP_DecryptUpdate(ctx, NULL, &outl, aad, aad_len);
 	}
 	
 	// Decrypt ciphertext

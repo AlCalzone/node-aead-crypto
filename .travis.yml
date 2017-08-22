@@ -1,11 +1,15 @@
 # adapted from https://github.com/headmelted/vscode/blob/a57e613e9e7d2fdb3917502cb98bbd1eaef8c058/.travis.yml
 
+branches:
+  only:
+    - master
+    - /^v\d+\.\d+\.\d+$/
+
 language: node_js
 
-# TODO: update this with the correct repo code
 env:
   global:
-    - secure: PIeU/NiHfhbNRokt1vr7niqgCI1fHOji0lIxszPiuY+h7t5aQfokp91MCfhcy9mj7bdqotXoZiw3J5V/F9YuR0Uz4ShQ9Mwyc4R9XN5jK0Q6HjQPqGRSGvrnBiavQSjP11MoAEpQzPqRcBNFMfWbMUzpWO8DUruS/R6P4y9D6+8+MSZ/p1LDqOaF/zHnkhFzFSuUOdlpDVGddP83qyXEu7qxFEwbsVW0jyx52dj9nmY2dy2du6R8BEgYQTLVL2yDq5j0Fbot+I6n3AntX15qsNrnJW5c6oAGUcM/2OCxZV4aRL2+CDvrHcCMCSAY+feeUGl2ZDLHMiwK/Ogmmb/NvSE7lTlUmY07cwgUAvHm2/jK7YqPXR1yIy9r1G6GVKdF9t6ctWK7LfLPzKP+2O38hwTflCx9akggSxsSeBXPL/b9aMaVgZbqDyb/Vje2Rw4SgicBVwRg/JVVSmZtdoCWaeAgprcuGCD8bAAfly7c7Aj5LGamBtrWaee0r3GJJGf4UMLeyVSDnSGbdz/clZuyYqxCa7r6McDfhwK5HrTqLCt/zYYVqd9Dum3BunAV4NDwI9ReRJBC3XGDfsoqKMaC5xwLhyRAwaOevJyiSdaxdblUmiuSf/fi26LqT59PrN/TfY0LnCnmG8QGMpOFSkH5EghWdS+z/jrE7ErNMc6/1a8=
+    - secure: S5ZX8U0U7xQwhZdsXMRAr3H88QqIvDc0P8wdZSZF7aO5yFl+EsaadGGN+ptWKWpOdOsgLo4U/jXXq/l1HJSVitKBZZNwiSOVNMG1nu+a4uSRIHY0qN6dWBpgLgTFBfa3Jldd2+E94zur+UBla82m9aktL+PuvnU7FI4tmA4wR9+zGAM1e3SC8eosNsyzIQFS3oPocMX0/gYh9KXKwra9Qjs2RSQMXarjbehNRh4za5nJ5ySAKTopV9WiBQupRj+ERXWlY3fR8J/Bv/uQU+On2OLKZEWV2hU39rNrMqnp6Lf5Mv6O24XnIRxjI5dvdIxY753SnzjfQUMXtdDbDF7TQpbXDll2e7Nn8WYchncqcbWC9Aa7MayaPTdbiVQRDu3DKa5cTQg2KSO89euspZlGMlimbZnyf7EJPLlqchjFPQTsOCyrrxgBoxV/sPBfRJnbjw/8jJ0lnEmnz49vdpsX+/QsmkWZ/HX8brOJITzIWneyHiWZxJkG7NdRT0c1dfl+UheHLV7rEnEXdzrxLT+M6X6nE9lIEoWcDqDzD0OObNqahoNEcHZzcw8L6WfzU8HFfLjs2i+5TqrDkvPnwaq/Vdzmy8fl9OY5Kjb1C68xd1nh2tQCSNuQCAGfeWIQ7nncKZbKQxXOlqtaK1PdLtzLHKYLhCTM6fP23RjBGrelHgU=
 
 # define OSes with all settings so the build matrix is shorter
 include: &osx
