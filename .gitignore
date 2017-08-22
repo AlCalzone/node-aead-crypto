@@ -290,3 +290,6 @@ __pycache__/
 
 # Build directory
 build/
+
+# npm package files
+node-aead-crypto-*.tgz
