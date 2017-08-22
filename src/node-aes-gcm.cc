@@ -233,6 +233,8 @@ NAN_METHOD(gcm::Decrypt) {
 	// Provide key and iv to OpenSSL
 	EVP_DecryptInit_ex(ctx, NULL, NULL, key, iv);
 	
+	int outl; // output length
+	
 	// if we have additional authenticated data, provide it
 	if (hasAuthData) {
 		EVP_DecryptUpdate(ctx, NULL, &outl, aad, aad_len)
