@@ -12,6 +12,7 @@ using namespace node;
 // Perform CCM mode AES encryption using the provided key, IV, plaintext
 // and auth_data buffers, and return an object containing "ciphertext"
 // and "auth_tag" buffers.
+// The key length determines the encryption bit level used.
 NAN_METHOD(ccm::Encrypt) {
 	Nan::HandleScope scope;
 
@@ -127,6 +128,7 @@ NAN_METHOD(ccm::Encrypt) {
 // Perform CCM mode AES decryption using the provided key, IV, ciphertext,
 // auth_data and auth_tag buffers, and return an object containing a "plaintext"
 // buffer and an "auth_ok" boolean.
+// The key length determines the encryption bit level used.
 
 NAN_METHOD(ccm::Decrypt) {
 	Nan::HandleScope scope;
@@ -137,7 +139,7 @@ NAN_METHOD(ccm::Decrypt) {
 		!Buffer::HasInstance(info[1]) || // iv
 		!Buffer::HasInstance(info[2]) || // ciphertext
 		!(info[3]->IsUndefined() || info[3]->IsNull() || Buffer::HasInstance(info[3])) || // auth_data, optional
-		!Buffer::HasInstance(info[4]) || // auth tag
+		!Buffer::HasInstance(info[4]) // auth tag
 	) {
 		Nan::ThrowError(
 			"Not enough (or wrong) arguments specified. Required: "
@@ -225,7 +227,7 @@ NAN_METHOD(ccm::Decrypt) {
 
 	// Create the return buffer and object
 	// We strip padding from the plaintext
-	Nan::MaybeLocal<Object> plaintext_buf = Nan::CopyBuffer((char*)plaintext, (uint32_t)ciphertext_len);
+	Nan::MaybeLocal<Object> plaintext_buf = Nan::CopyBuffer((char*)plaintext, (uint32_t)plaintext_len);
 	Local<Object> return_obj = Nan::New<Object>();
 	Nan::Set(return_obj, Nan::New<String>("plaintext").ToLocalChecked(), plaintext_buf.ToLocalChecked());
 	Nan::Set(return_obj, Nan::New<String>("auth_ok").ToLocalChecked(), Nan::New<Boolean>(auth_ok));
