@@ -13,5 +13,5 @@ TODO
 
 ## Changelog
 
-#### 0.0.0
-* (AlCalzone) not ready yet
+#### 1.0.0
+* (AlCalzone) initial release
