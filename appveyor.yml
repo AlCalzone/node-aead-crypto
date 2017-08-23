@@ -40,7 +40,7 @@ install:
 
 build_script:
   - ps: echo $publish_binary
-  - npm install --build-from-source
+  - npm install --production --build-from-source
   - ps: |
       $ErrorActionPreference = 'Continue'
       if ($publish_binary -Eq "1") {
