@@ -13,7 +13,7 @@ TODO
 
 ## Changelog
 
-#### 1.0.1
+#### 1.0.2
 * (AlCalzone) fixed typescript definitions
 
 #### 1.0.0
