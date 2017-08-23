@@ -13,5 +13,8 @@ TODO
 
 ## Changelog
 
+#### 1.0.1
+* (AlCalzone) fixed typescript definitions
+
 #### 1.0.0
 * (AlCalzone) initial release
