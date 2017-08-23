@@ -217,7 +217,6 @@ NAN_METHOD(gcm::Decrypt) {
 	}
 	// parse auth_tag
 	unsigned char *auth_tag = (unsigned char *)Buffer::Data(info[4]);
-	const size_t auth_tag_len = Buffer::Length(info[4]);
 
 
 	// ==================
