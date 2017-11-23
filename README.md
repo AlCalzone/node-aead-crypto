@@ -13,8 +13,11 @@ TODO
 
 ## Changelog
 
-#### 1.0.2
+### 1.0.3
+* (AlCalzone) Drop Node 7 from precompilation, add Node 9
+
+### 1.0.2
 * (AlCalzone) fixed typescript definitions
 
-#### 1.0.0
+### 1.0.0
 * (AlCalzone) initial release
