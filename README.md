@@ -13,6 +13,9 @@ TODO
 
 ## Changelog
 
+### 1.0.4
+* (AlCalzone) Fixed installation issues on RPi 1
+
 ### 1.0.3
 * (AlCalzone) Drop Node 7 from precompilation, add Node 9
 

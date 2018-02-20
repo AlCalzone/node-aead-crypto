@@ -1,13 +1,15 @@
 {
   "name": "node-aead-crypto",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Node.js module which provides OpenSSL bindings for AEAD ciphers",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
     "test": "mocha -R spec",
     "prepublish": "npm ls",
-    "install": "node-pre-gyp install --fallback-to-build"
+    "install:rpi1": "node-pre-gyp configure & node-pre-gyp build",
+    "install:default": "node-pre-gyp install --fallback-to-build",
+    "install": "node lib/install.js"
   },
   "repository": {
     "type": "git",
