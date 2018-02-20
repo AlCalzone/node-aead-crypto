@@ -7,7 +7,7 @@
   "scripts": {
     "test": "mocha -R spec",
     "prepublish": "npm ls",
-    "install:rpi1": "node-pre-gyp configure & node-pre-gyp build",
+    "install:rpi1": "node-gyp configure & node-pre-gyp build",
     "install:default": "node-pre-gyp install --fallback-to-build",
     "install": "node lib/install.js"
   },
