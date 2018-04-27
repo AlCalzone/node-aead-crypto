@@ -13,6 +13,9 @@ TODO
 
 ## Changelog
 
+### 1.1.0
+* (AlCalzone) Support NodeJS 10, drop Node 9 from precompilation
+
 ### 1.0.5
 * (AlCalzone) Fixed installation issues on RPi 1
 
