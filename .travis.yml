@@ -1,9 +1,9 @@
 # adapted from https://github.com/headmelted/vscode/blob/a57e613e9e7d2fdb3917502cb98bbd1eaef8c058/.travis.yml
 
-branches:
-  only:
-    - master
-    - /^v\d+\.\d+\.\d+$/
+# branches:
+#   only:
+#     - master
+#     - /^v\d+\.\d+\.\d+$/
 
 language: node_js
 
@@ -66,32 +66,32 @@ include: &arm
 
 matrix:
   include:
+  # - <<: *osx
+  #   node_js: 4
+  # - <<: *osx
+  #   node_js: 6
+  # - <<: *osx
+  #   node_js: 8
   - <<: *osx
-    node_js: 4
-  - <<: *osx
-    node_js: 6
-  - <<: *osx
-    node_js: 8
-  - <<: *osx
-    node_js: 9
+    node_js: 10
   
+  # - <<: *linux
+  #   node_js: 4
+  # - <<: *linux
+  #   node_js: 6
+  # - <<: *linux
+  #   node_js: 8
   - <<: *linux
-    node_js: 4
-  - <<: *linux
-    node_js: 6
-  - <<: *linux
-    node_js: 8
-  - <<: *linux
-    node_js: 9
+    node_js: 10
   
+  # - <<: *arm
+  #   node_js: 4
+  # - <<: *arm
+  #   node_js: 6
+  # - <<: *arm
+  #   node_js: 8
   - <<: *arm
-    node_js: 4
-  - <<: *arm
-    node_js: 6
-  - <<: *arm
-    node_js: 8
-  - <<: *arm
-    node_js: 9
+    node_js: 10
     
 before_install:
 # Export neccessary env vars so gyp finds the compilers
