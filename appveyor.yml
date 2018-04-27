@@ -1,9 +1,9 @@
 # adapted from https://github.com/tessel/node-usb/blob/master/appveyor.yml
 
-branches:
-  only:
-    - master
-    - /^v\d+\.\d+\.\d+$/
+# branches:
+#   only:
+#     - master
+#     - /^v\d+\.\d+\.\d+$/
 
 # TODO: update this with the correct repo token
 environment:

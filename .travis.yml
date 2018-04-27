@@ -1,9 +1,9 @@
 # adapted from https://github.com/headmelted/vscode/blob/a57e613e9e7d2fdb3917502cb98bbd1eaef8c058/.travis.yml
 
-branches:
-  only:
-    - master
-    - /^v\d+\.\d+\.\d+$/
+# branches:
+#   only:
+#     - master
+#     - /^v\d+\.\d+\.\d+$/
 
 language: node_js
 
