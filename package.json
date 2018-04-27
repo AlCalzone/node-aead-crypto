@@ -34,7 +34,7 @@
   "homepage": "https://github.com/AlCalzone/node-aead-crypto#readme",
   "gypfile": true,
   "dependencies": {
-    "nan": "2.7.x",
+    "nan": "2.10.x",
     "node-pre-gyp": "^0.6.38",
     "node-pre-gyp-github": "^1.3.1"
   },
