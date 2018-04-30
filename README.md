@@ -13,6 +13,9 @@ TODO
 
 ## Changelog
 
+### 1.1.1 (2018-04-30)
+* (AlCalzone) Update dependency versions hoping to fix an installation error
+
 ### 1.1.0
 * (AlCalzone) Support NodeJS 10, drop Node 9 from precompilation
 
