@@ -13,7 +13,7 @@ TODO
 
 ## Changelog
 
-### 1.1.1 (2018-04-30)
+### 1.1.2 (2018-04-30)
 * (AlCalzone) Update dependency versions hoping to fix an installation error
 
 ### 1.1.0
