@@ -1,6 +1,8 @@
 # node-aead-crypto
 OpenSSL bindings for AEAD ciphers
 
+**Note: This module is not necessary on NodeJS 10+ because you can now provide the `authTagLength`.**
+
 ## Supported ciphers
 * AES-CCM
 * AES-GCM
