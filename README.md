@@ -15,6 +15,9 @@ TODO
 
 ## Changelog
 
+### 1.1.4 (2018-06-28)
+* (AlCalzone) Update node-pre-gyp dependency
+
 ### 1.1.3 (2018-04-30)
 * (AlCalzone) Update dependency versions hoping to fix an installation error
 
