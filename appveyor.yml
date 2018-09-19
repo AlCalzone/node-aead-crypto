@@ -18,9 +18,6 @@ environment:
     - node_version: '8'
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       GYP_MSVS_VERSION: 2015
-    - node_version: '10'
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      GYP_MSVS_VERSION: 2015
 
 platform:
   - x86

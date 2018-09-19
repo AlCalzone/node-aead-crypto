@@ -35,8 +35,8 @@
   "gypfile": true,
   "dependencies": {
     "nan": "2.10.x",
-    "node-pre-gyp": "0.10.2",
-    "node-pre-gyp-github": "^1.3.1"
+    "node-pre-gyp": "^0.10.2",
+    "node-pre-gyp-github": "^1.4.1"
   },
   "bundledDependencies": [
     "node-pre-gyp"

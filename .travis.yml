@@ -72,8 +72,6 @@ matrix:
     node_js: 6
   - <<: *osx
     node_js: 8
-  - <<: *osx
-    node_js: 10
   
   - <<: *linux
     node_js: 4
@@ -81,8 +79,6 @@ matrix:
     node_js: 6
   - <<: *linux
     node_js: 8
-  - <<: *linux
-    node_js: 10
   
   - <<: *arm
     node_js: 4
@@ -90,8 +86,6 @@ matrix:
     node_js: 6
   - <<: *arm
     node_js: 8
-  - <<: *arm
-    node_js: 10
     
 before_install:
 # Export neccessary env vars so gyp finds the compilers
