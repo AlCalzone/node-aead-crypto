@@ -15,6 +15,9 @@ TODO
 
 ## Changelog
 
+### 2.0.0 (2018-11-04)
+* (AlCalzone) Rework the installation procedure to fail on Node 10+
+
 ### 1.1.6 (2018-09-19)
 * (AlCalzone) Update node-pre-gyp dependency
 
