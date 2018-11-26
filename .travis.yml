@@ -106,7 +106,7 @@ before_install:
 
 install:
 # install dependencies
-- npm install --production
+- npm install
 
 script:
 # for cross-compilation x64=>ARM make the required compilers known
@@ -117,7 +117,7 @@ script:
 - |
   if [[ $PUBLISH_BINARY == true ]]; then
     echo "publishing binary"
-    npm run prebuild-ci --arch=${ARCH}
+    prebuild-ci --arch=${ARCH}
   fi
 
 after_success:
