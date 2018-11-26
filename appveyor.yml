@@ -11,17 +11,16 @@ environment:
 
   GYP_MSVS_VERSION: 2013
 
-  node_version: '8'
-  # matrix:
+  matrix:
   #   - node_version: '4'
   #   - node_version: '6'
-  #   - node_version: '8'
-  #     APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-  #     GYP_MSVS_VERSION: 2015
+    - node_version: '8'
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      GYP_MSVS_VERSION: 2015
 
-# platform:
+platform:
 #   - x86
-#   - x64
+  - x64
 
 configuration:
   - Release

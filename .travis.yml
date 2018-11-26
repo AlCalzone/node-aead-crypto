@@ -72,8 +72,8 @@ matrix:
 #     node_js: 4
 #   - <<: *osx
 #     node_js: 6
-#   - <<: *osx
-#     node_js: 8
+    - <<: *osx
+      node_js: 8
 
 #   - <<: *linux
 #     node_js: 4

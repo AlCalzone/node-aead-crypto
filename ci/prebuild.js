@@ -1,11 +1,8 @@
 const { spawn } = require("child_process");
 const path = require("path");
-const yargs = require("yargs");
 const os = require("os");
 
-console.dir(yargs.argv);
-
-const versions = /^win/.test(os.platform()) ? [
+const versions = [
 	{ runtime: "node", target: 46, arch: "x64" },
 	{ runtime: "node", target: 46, arch: "x64" },
 	{ runtime: "node", target: 46, arch: "x64" },
@@ -24,53 +21,42 @@ const versions = /^win/.test(os.platform()) ? [
 	{ runtime: "electron", target: 57, arch: "x64" },
 	{ runtime: "electron", target: 57, arch: "x64" },
 	{ runtime: "electron", target: 57, arch: "x64" },
-	{ runtime: "node", target: 46, arch: "arm" },
-	{ runtime: "node", target: 46, arch: "arm" },
-	{ runtime: "node", target: 46, arch: "arm" },
-	{ runtime: "node", target: 48, arch: "arm" },
-	{ runtime: "node", target: 48, arch: "arm" },
-	{ runtime: "node", target: 48, arch: "arm" },
-	{ runtime: "node", target: 57, arch: "arm" },
-	{ runtime: "node", target: 57, arch: "arm" },
-	{ runtime: "node", target: 57, arch: "arm" },
-] : [
-	{ runtime: "node", target: 46, arch: "x64" },
-	{ runtime: "node", target: 46, arch: "x64" },
-	{ runtime: "node", target: 46, arch: "x64" },
-	{ runtime: "node", target: 48, arch: "x64" },
-	{ runtime: "node", target: 48, arch: "x64" },
-	{ runtime: "node", target: 48, arch: "x64" },
-	{ runtime: "node", target: 57, arch: "x64" },
-	{ runtime: "node", target: 57, arch: "x64" },
-	{ runtime: "node", target: 57, arch: "x64" },
-	{ runtime: "node", target: 46, arch: "x86" },
-	{ runtime: "node", target: 46, arch: "x86" },
-	{ runtime: "node", target: 46, arch: "x86" },
-	{ runtime: "node", target: 48, arch: "x86" },
-	{ runtime: "node", target: 48, arch: "x86" },
-	{ runtime: "node", target: 48, arch: "x86" },
-	{ runtime: "node", target: 57, arch: "x86" },
-	{ runtime: "node", target: 57, arch: "x86" },
-	{ runtime: "node", target: 57, arch: "x86" },
-	{ runtime: "electron", target: 46, arch: "x64" },
-	{ runtime: "electron", target: 46, arch: "x64" },
-	{ runtime: "electron", target: 46, arch: "x64" },
-	{ runtime: "electron", target: 48, arch: "x64" },
-	{ runtime: "electron", target: 48, arch: "x64" },
-	{ runtime: "electron", target: 48, arch: "x64" },
-	{ runtime: "electron", target: 57, arch: "x64" },
-	{ runtime: "electron", target: 57, arch: "x64" },
-	{ runtime: "electron", target: 57, arch: "x64" },
-	{ runtime: "electron", target: 46, arch: "x86" },
-	{ runtime: "electron", target: 46, arch: "x86" },
-	{ runtime: "electron", target: 46, arch: "x86" },
-	{ runtime: "electron", target: 48, arch: "x86" },
-	{ runtime: "electron", target: 48, arch: "x86" },
-	{ runtime: "electron", target: 48, arch: "x86" },
-	{ runtime: "electron", target: 57, arch: "x86" },
-	{ runtime: "electron", target: 57, arch: "x86" },
-	{ runtime: "electron", target: 57, arch: "x86" },
 ];
+if (/^win/.test(os.platform())) {
+	versions.push(
+		{ runtime: "node", target: 46, arch: "x86" },
+		{ runtime: "node", target: 46, arch: "x86" },
+		{ runtime: "node", target: 46, arch: "x86" },
+		{ runtime: "node", target: 48, arch: "x86" },
+		{ runtime: "node", target: 48, arch: "x86" },
+		{ runtime: "node", target: 48, arch: "x86" },
+		{ runtime: "node", target: 57, arch: "x86" },
+		{ runtime: "node", target: 57, arch: "x86" },
+		{ runtime: "node", target: 57, arch: "x86" },
+		{ runtime: "electron", target: 46, arch: "x86" },
+		{ runtime: "electron", target: 46, arch: "x86" },
+		{ runtime: "electron", target: 46, arch: "x86" },
+		{ runtime: "electron", target: 48, arch: "x86" },
+		{ runtime: "electron", target: 48, arch: "x86" },
+		{ runtime: "electron", target: 48, arch: "x86" },
+		{ runtime: "electron", target: 57, arch: "x86" },
+		{ runtime: "electron", target: 57, arch: "x86" },
+		{ runtime: "electron", target: 57, arch: "x86" },
+	);
+}
+if (os.platform() === "linux") {
+	versions.push(
+		{ runtime: "node", target: 46, arch: "arm" },
+		{ runtime: "node", target: 46, arch: "arm" },
+		{ runtime: "node", target: 46, arch: "arm" },
+		{ runtime: "node", target: 48, arch: "arm" },
+		{ runtime: "node", target: 48, arch: "arm" },
+		{ runtime: "node", target: 48, arch: "arm" },
+		{ runtime: "node", target: 57, arch: "arm" },
+		{ runtime: "node", target: 57, arch: "arm" },
+		{ runtime: "node", target: 57, arch: "arm" },
+	);
+}
 
 const token = process.env.PREBUILD_TOKEN;
 
