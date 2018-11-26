@@ -6,7 +6,6 @@ branches:
     - /^v\d+\.\d+\.\d+(\-[a-zA-Z0-9]+)?$/
 
 language: node_js
-node_js: 8 # We don't build any higher than this anyways
 
 env:
   global:
@@ -68,9 +67,26 @@ include: &arm
 matrix:
   include:
   - <<: *osx
+    node_js: 4
+  - <<: *osx
+    node_js: 6
+  - <<: *osx
+    node_js: 8
+
   - <<: *linux
+    node_js: 4
+  - <<: *linux
+    node_js: 6
+  - <<: *linux
+    node_js: 8
+
   - <<: *arm
-    
+    node_js: 4
+  - <<: *arm
+    node_js: 6
+  - <<: *arm
+    node_js: 8
+
 before_install:
 # Export neccessary env vars so gyp finds the compilers
 - if [[ -n "${EXPORT_CXX}" ]]; then export CXX="${EXPORT_CXX}"; fi
@@ -98,13 +114,10 @@ script:
 - if [[ -n "${EXPORT_PRE_CC}" ]]; then export CC="${EXPORT_PRE_CC}"; fi
 - if [[ -n "${EXPORT_PRE_AR}" ]]; then export AR="${EXPORT_PRE_AR}"; fi
 - if [[ -n "${EXPORT_PRE_LINK}" ]]; then export LINK="${EXPORT_PRE_LINK}"; fi
-# build for Node ABI 46 (v4), 48 (v6) and 57 (v8)
-- prebuild --arch=${ARCH} -t 46 -t 48 -t 57
-- ls ./prebuilds
 - |
   if [[ $PUBLISH_BINARY == true ]]; then
     echo "publishing binary"
-    prebuild --upload-all
+    prebuild-ci
   fi
 
 after_success:

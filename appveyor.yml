@@ -8,10 +8,15 @@ branches:
 environment:
   PREBUILD_TOKEN:
     secure: Wp85FZ3/lEWE9gP+vsr/4/CEhVnS3ApcGRcOWNlSGdYxjvQ07/LyiHOioY687n8l
-  
-  APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-  GYP_MSVS_VERSION: 2015
-  node_version: 8 # We don't need any higher than this
+
+  GYP_MSVS_VERSION: 2013
+
+  matrix:
+    - node_version: '4'
+    - node_version: '6'
+    - node_version: '8'
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      GYP_MSVS_VERSION: 2015
 
 platform:
   - x86
@@ -32,13 +37,10 @@ install:
 build_script:
   - ps: echo $publish_binary
   - npm install --build-from-source
-  # build for Node ABI 46 (v4), 48 (v6) and 57 (v8)
   - ps: |
       $ErrorActionPreference = 'Continue'
       if ($publish_binary -Eq "1") {
-        node_modules\.bin\prebuild -t 46 -t 48 -t 57 2>&1 | write-host
-        dir prebuilds
-        node_modules\.bin\prebuild --upload-all
+        node_modules\.bin\prebuild-ci 2>&1 | write-host
         if (-Not ($?)) {
           throw "Failed publishing";
         }
