@@ -98,7 +98,8 @@ script:
 - if [[ -n "${EXPORT_PRE_CC}" ]]; then export CC="${EXPORT_PRE_CC}"; fi
 - if [[ -n "${EXPORT_PRE_AR}" ]]; then export AR="${EXPORT_PRE_AR}"; fi
 - if [[ -n "${EXPORT_PRE_LINK}" ]]; then export LINK="${EXPORT_PRE_LINK}"; fi
-- prebuild --arch=${ARCH} -t 4 -t 6 -t 8
+# build for Node ABI 46 (v4), 48 (v6) and 57 (v8)
+- prebuild --arch=${ARCH} -t 46 -t 48 -t 57
 - ls ./prebuilds
 - |
   if [[ $PUBLISH_BINARY == true ]]; then

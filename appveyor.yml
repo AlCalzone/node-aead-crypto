@@ -32,10 +32,11 @@ install:
 build_script:
   - ps: echo $publish_binary
   - npm install --build-from-source
+  # build for Node ABI 46 (v4), 48 (v6) and 57 (v8)
   - ps: |
       $ErrorActionPreference = 'Continue'
       if ($publish_binary -Eq "1") {
-        node_modules\.bin\prebuild -t 4 -t 6 -t 8 2>&1 | write-host
+        node_modules\.bin\prebuild -t 46 -t 48 -t 57 2>&1 | write-host
         dir prebuilds
         node_modules\.bin\prebuild --upload-all
         if (-Not ($?)) {
