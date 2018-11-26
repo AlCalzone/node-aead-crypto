@@ -61,11 +61,12 @@ if (os.platform() === "linux") {
 const token = process.env.PREBUILD_TOKEN;
 
 async function main() {
-	const executable = path.join(__dirname, "..", "node_modules/.bin", "prebuild");
+	const executable = path.join(__dirname, "..", "node_modules/prebuild/bin.js");
 	for (const version of versions) {
 		const { exitCode } = await runCommand(
-			executable,
+			"node",
 			[
+				executable,
 				"-r", version.runtime,
 				"-t", version.target,
 				"-u", token,
