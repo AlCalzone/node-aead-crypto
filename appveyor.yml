@@ -12,7 +12,7 @@ environment:
   APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
   GYP_MSVS_VERSION: 2015
 
-node_version: 'LTS'
+node_version: 8 # We don't need any higher than this
 
 platform:
   - x86
@@ -36,7 +36,7 @@ build_script:
   - ps: |
       $ErrorActionPreference = 'Continue'
       if ($publish_binary -Eq "1") {
-        node_modules\.bin\prebuild --all 2>&1 | write-host
+        node_modules\.bin\prebuild -t 4 -t 6 -t 8 2>&1 | write-host
         dir prebuilds
         node_modules\.bin\prebuild --upload-all
         if (-Not ($?)) {

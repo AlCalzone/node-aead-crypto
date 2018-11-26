@@ -6,8 +6,7 @@ branches:
     - /^v\d+\.\d+\.\d+(\-[a-zA-Z0-9]+)?$/
 
 language: node_js
-node_js:
-  - lts
+node_js: 8 # We don't build any higher than this anyways
 
 env:
   global:
@@ -99,7 +98,7 @@ script:
 - if [[ -n "${EXPORT_PRE_CC}" ]]; then export CC="${EXPORT_PRE_CC}"; fi
 - if [[ -n "${EXPORT_PRE_AR}" ]]; then export AR="${EXPORT_PRE_AR}"; fi
 - if [[ -n "${EXPORT_PRE_LINK}" ]]; then export LINK="${EXPORT_PRE_LINK}"; fi
-- prebuild --all --arch=${ARCH}
+- prebuild --arch=${ARCH} -t 4 -t 6 -t 8
 - ls ./prebuilds
 - |
   if [[ $PUBLISH_BINARY == true ]]; then
