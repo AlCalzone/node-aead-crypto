@@ -5,9 +5,8 @@ branches:
     - master
     - /^v\d+\.\d+\.\d+$/
 
-# TODO: update this with the correct repo token
 environment:
-  NODE_PRE_GYP_GITHUB_TOKEN:
+  PREBUILD_TOKEN:
     secure: Wp85FZ3/lEWE9gP+vsr/4/CEhVnS3ApcGRcOWNlSGdYxjvQ07/LyiHOioY687n8l
   
   GYP_MSVS_VERSION: 2013
@@ -41,8 +40,7 @@ build_script:
   - ps: |
       $ErrorActionPreference = 'Continue'
       if ($publish_binary -Eq "1") {
-        node-pre-gyp package
-        node-pre-gyp-github publish --release 2>&1 | write-host
+        prebuild-ci 2>&1 | write-host
         if (-Not ($?)) {
           throw "Failed publishing";
         }

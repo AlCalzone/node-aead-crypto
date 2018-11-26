@@ -9,7 +9,7 @@ language: node_js
 
 env:
   global:
-    - secure: S5ZX8U0U7xQwhZdsXMRAr3H88QqIvDc0P8wdZSZF7aO5yFl+EsaadGGN+ptWKWpOdOsgLo4U/jXXq/l1HJSVitKBZZNwiSOVNMG1nu+a4uSRIHY0qN6dWBpgLgTFBfa3Jldd2+E94zur+UBla82m9aktL+PuvnU7FI4tmA4wR9+zGAM1e3SC8eosNsyzIQFS3oPocMX0/gYh9KXKwra9Qjs2RSQMXarjbehNRh4za5nJ5ySAKTopV9WiBQupRj+ERXWlY3fR8J/Bv/uQU+On2OLKZEWV2hU39rNrMqnp6Lf5Mv6O24XnIRxjI5dvdIxY753SnzjfQUMXtdDbDF7TQpbXDll2e7Nn8WYchncqcbWC9Aa7MayaPTdbiVQRDu3DKa5cTQg2KSO89euspZlGMlimbZnyf7EJPLlqchjFPQTsOCyrrxgBoxV/sPBfRJnbjw/8jJ0lnEmnz49vdpsX+/QsmkWZ/HX8brOJITzIWneyHiWZxJkG7NdRT0c1dfl+UheHLV7rEnEXdzrxLT+M6X6nE9lIEoWcDqDzD0OObNqahoNEcHZzcw8L6WfzU8HFfLjs2i+5TqrDkvPnwaq/Vdzmy8fl9OY5Kjb1C68xd1nh2tQCSNuQCAGfeWIQ7nncKZbKQxXOlqtaK1PdLtzLHKYLhCTM6fP23RjBGrelHgU=
+    - secure: Z/K+lFOa5m76cAxvo6FcdECXZ5xDYczbpB+KukPxyhnx8JDN3XKimRgthq7MZIWKLn5GKTyXTX84BlPpIA4odXdWhok6E31pzPR/Z2wOeZyV/WjAvAlicBxRb1agzs56PkjMC1H6yj79gh6LlMvw9zdPQChscSFCw1zh9acfUIqac7wkrjxQvleMELrqaZTxKT+eERT7+Nzh8NIEVpIUHFJwqs8L33i/xPvSQPY9Dnlpphd+hgz3ufSJ7lfG+iaSMZnhNBn67peNK9kDPGeLhEfUYXJMZSg3M+8the/G1fs6Tqy8TLYaXK7O95mNfkF71qQSc/t+Fl058A82CGn9aOGTBES8uHKZR1/AYd3e6jPDaPFL0bA2kc8VxRZi3W9TjnVitc+Fo5QUz+IwuDyVD2zq2boG6j7+3fkxq89w/oMEyYbsMYHzxPJGpFhEoC3ez6MsMU7Co5SxVLCuIHvi9Ut9Rdp0ZHC8aiDL5EpoZCisR1RO6AAsiVj4Nn0KoAT08Mzq1TLiOuI/clz+aREIXbh1G3dBTeY2VN46184V5xdjZBA9MU5+fGFJAyAZMYUjNePlWbrXYU+vlGvYGt1kHz781erLRFebwnPvI54HX31rVSF+rK56hzNjz3eZ6zqQSkArIldFa1uL1XGHAatcaCUBptgkjUPa1JmorFNdAL4=
 
 # define OSes with all settings so the build matrix is shorter
 include: &osx
@@ -114,16 +114,11 @@ script:
 - if [[ -n "${EXPORT_PRE_CC}" ]]; then export CC="${EXPORT_PRE_CC}"; fi
 - if [[ -n "${EXPORT_PRE_AR}" ]]; then export AR="${EXPORT_PRE_AR}"; fi
 - if [[ -n "${EXPORT_PRE_LINK}" ]]; then export LINK="${EXPORT_PRE_LINK}"; fi
-- node-pre-gyp configure --target_arch=${ARCH}
-- node-pre-gyp build --target_arch=${ARCH}
 - |
   if [[ $PUBLISH_BINARY == true ]]; then
     echo "publishing binary"
-    node-pre-gyp package --target_arch=${ARCH}
-    node-pre-gyp-github publish --release
+    prebuild-ci --arch=${ARCH}
   fi
-- node-pre-gyp clean --target_arch=${ARCH}
-- node-gyp clean --target_arch=${ARCH}
 
 after_success:
 - echo "all done!"
