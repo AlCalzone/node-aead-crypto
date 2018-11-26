@@ -40,7 +40,7 @@ build_script:
   - ps: |
       $ErrorActionPreference = 'Continue'
       if ($publish_binary -Eq "1") {
-        prebuild-ci 2>&1 | write-host
+        node_modules\.bin\prebuild-ci 2>&1 | write-host
         if (-Not ($?)) {
           throw "Failed publishing";
         }
