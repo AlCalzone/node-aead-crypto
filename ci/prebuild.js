@@ -2,6 +2,8 @@ const { spawn } = require("child_process");
 const path = require("path");
 const os = require("os");
 
+const isWindows = /^win/.test(os.platform());
+
 const versions = [
 	{ runtime: "node", target: 46, arch: "x64" },
 	{ runtime: "node", target: 46, arch: "x64" },
@@ -22,7 +24,7 @@ const versions = [
 	{ runtime: "electron", target: 57, arch: "x64" },
 	{ runtime: "electron", target: 57, arch: "x64" },
 ];
-if (/^win/.test(os.platform())) {
+if (isWindows) {
 	versions.push(
 		{ runtime: "node", target: 46, arch: "x86" },
 		{ runtime: "node", target: 46, arch: "x86" },
@@ -61,12 +63,11 @@ if (os.platform() === "linux") {
 const token = process.env.PREBUILD_TOKEN;
 
 async function main() {
-	const executable = path.join(__dirname, "..", "node_modules/prebuild/bin.js");
+	const executable = path.join(__dirname, "..", "node_modules/.bin", "prebuild" + (isWindows ? ".cmd" : ""));
 	for (const version of versions) {
 		const { exitCode } = await runCommand(
-			"node",
+			executable,
 			[
-				executable,
 				"-r", version.runtime,
 				"-t", version.target,
 				"-u", token,
