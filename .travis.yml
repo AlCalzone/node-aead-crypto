@@ -3,7 +3,7 @@
 branches:
   only:
     - master
-    - /^v\d+\.\d+\.\d+$/
+    - /^v\d+\.\d+\.\d+(\-[a-zA-Z0-9]+)?$/
 
 language: node_js
 
