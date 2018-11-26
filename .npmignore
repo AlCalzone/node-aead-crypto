@@ -3,3 +3,4 @@ build/
 appveyor.yml
 .travis.yml
 node-aead-crypto-*.tgz
+ci/

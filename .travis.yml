@@ -66,26 +66,28 @@ include: &arm
 
 matrix:
   include:
-  - <<: *osx
-    node_js: 4
-  - <<: *osx
-    node_js: 6
-  - <<: *osx
-    node_js: 8
+    - <<: *linux
+      node_js: 8
+#   - <<: *osx
+#     node_js: 4
+#   - <<: *osx
+#     node_js: 6
+#   - <<: *osx
+#     node_js: 8
 
-  - <<: *linux
-    node_js: 4
-  - <<: *linux
-    node_js: 6
-  - <<: *linux
-    node_js: 8
+#   - <<: *linux
+#     node_js: 4
+#   - <<: *linux
+#     node_js: 6
+#   - <<: *linux
+#     node_js: 8
 
-  - <<: *arm
-    node_js: 4
-  - <<: *arm
-    node_js: 6
-  - <<: *arm
-    node_js: 8
+#   - <<: *arm
+#     node_js: 4
+#   - <<: *arm
+#     node_js: 6
+#   - <<: *arm
+#     node_js: 8
 
 before_install:
 # Export neccessary env vars so gyp finds the compilers
@@ -117,7 +119,7 @@ script:
 - |
   if [[ $PUBLISH_BINARY == true ]]; then
     echo "publishing binary"
-    prebuild-ci
+    node ci/prebuild.js
   fi
 
 after_success:
