@@ -117,7 +117,7 @@ script:
 - |
   if [[ $PUBLISH_BINARY == true ]]; then
     echo "publishing binary"
-    ./node_modules/.bin/prebuild-ci --arch=${ARCH}
+    npm run prebuild-ci --arch=${ARCH}
   fi
 
 after_success:
