@@ -11,7 +11,7 @@ environment:
   
   APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
   GYP_MSVS_VERSION: 2015
-  nodejs_version: 8 # We don't need any higher than this
+  node_version: 8 # We don't need any higher than this
 
 platform:
   - x86
