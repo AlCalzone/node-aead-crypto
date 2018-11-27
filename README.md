@@ -15,6 +15,9 @@ TODO
 
 ## Changelog
 
+### 2.1.0 (2018-11-27)
+* (AlCalzone) Dropped `node-pre-gyp` for `prebuild`
+
 ### 2.0.0 (2018-11-04)
 * (AlCalzone) Rework the installation procedure to fail on Node 10+
 
