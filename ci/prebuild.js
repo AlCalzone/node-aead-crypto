@@ -5,18 +5,12 @@ const os = require("os");
 const isWindows = /^win/.test(os.platform());
 
 const versions = [
-	{ runtime: "node", target: 46, arch: "x64" },
-	{ runtime: "node", target: 46, arch: "x64" },
-	{ runtime: "node", target: 46, arch: "x64" },
 	{ runtime: "node", target: 48, arch: "x64" },
 	{ runtime: "node", target: 48, arch: "x64" },
 	{ runtime: "node", target: 48, arch: "x64" },
 	{ runtime: "node", target: 57, arch: "x64" },
 	{ runtime: "node", target: 57, arch: "x64" },
 	{ runtime: "node", target: 57, arch: "x64" },
-	{ runtime: "electron", target: 46, arch: "x64" },
-	{ runtime: "electron", target: 46, arch: "x64" },
-	{ runtime: "electron", target: 46, arch: "x64" },
 	{ runtime: "electron", target: 48, arch: "x64" },
 	{ runtime: "electron", target: 48, arch: "x64" },
 	{ runtime: "electron", target: 48, arch: "x64" },
@@ -42,9 +36,6 @@ if (isWindows) {
 }
 if (os.platform() === "linux") {
 	versions.push(
-		{ runtime: "node", target: 46, arch: "arm" },
-		{ runtime: "node", target: 46, arch: "arm" },
-		{ runtime: "node", target: 46, arch: "arm" },
 		{ runtime: "node", target: 48, arch: "arm" },
 		{ runtime: "node", target: 48, arch: "arm" },
 		{ runtime: "node", target: 48, arch: "arm" },
