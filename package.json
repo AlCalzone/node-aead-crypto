@@ -46,7 +46,6 @@
     "buffertools": "^2.1.6",
     "mocha": "^5.1.1",
     "prebuild": "^8.1.2",
-    "prebuild-ci": "^2.2.3",
     "should": "^13.2.1"
   }
 }
