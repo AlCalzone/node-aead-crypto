@@ -26,18 +26,12 @@ const versions = [
 ];
 if (isWindows) {
 	versions.push(
-		{ runtime: "node", target: 46, arch: "x86" },
-		{ runtime: "node", target: 46, arch: "x86" },
-		{ runtime: "node", target: 46, arch: "x86" },
 		{ runtime: "node", target: 48, arch: "x86" },
 		{ runtime: "node", target: 48, arch: "x86" },
 		{ runtime: "node", target: 48, arch: "x86" },
 		{ runtime: "node", target: 57, arch: "x86" },
 		{ runtime: "node", target: 57, arch: "x86" },
 		{ runtime: "node", target: 57, arch: "x86" },
-		{ runtime: "electron", target: 46, arch: "x86" },
-		{ runtime: "electron", target: 46, arch: "x86" },
-		{ runtime: "electron", target: 46, arch: "x86" },
 		{ runtime: "electron", target: 48, arch: "x86" },
 		{ runtime: "electron", target: 48, arch: "x86" },
 		{ runtime: "electron", target: 48, arch: "x86" },
