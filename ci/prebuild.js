@@ -61,7 +61,7 @@ async function main() {
 			{ cwd: path.join(__dirname, "..") }
 		)
 		if (exitCode !== 0) {
-			throw new Error(`prebuild exited with code ${code}`);
+			throw new Error(`prebuild exited with code ${exitCode}`);
 		}
 	}
 }
