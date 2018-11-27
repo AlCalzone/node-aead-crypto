@@ -57,6 +57,7 @@ async function main() {
 			// throw new Error(`prebuild exited with code ${exitCode}`);
 		}
 	}
+	process.exit(0);
 }
 main();
 
