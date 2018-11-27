@@ -11,7 +11,7 @@ const getRuntimeVersions = (runtime) => {
 	// source: https://nodejs.org/en/download/releases/
 	return runtime === "node" ? ["6.14.4", "8.13.0"]
 		// source: https://github.com/lgeiger/electron-abi
-		: /* runtime === "electron" */["1.2.8", "1.3.13", "1.4.16", "1.7.10"]
+		: /* runtime === "electron" */["1.2.8", "1.3.13", "1.4.16", "1.7.10", "2.0.0", "3.0.0"]
 		;
 }
 
@@ -42,6 +42,8 @@ const token = process.env.PREBUILD_TOKEN;
 async function main() {
 	const executable = path.join(__dirname, "..", "node_modules/.bin", "prebuild" + (isWindows ? ".cmd" : ""));
 	for (const version of getAllVersions()) {
+		console.log();
+		console.log(`prebuilding binaries for ${version.runtime}@${version.target} (${version.arch})...`);
 		const { exitCode } = await runCommand(
 			executable,
 			[
@@ -50,7 +52,10 @@ async function main() {
 				"-u", token,
 				"--arch", version.arch
 			],
-			{ cwd: path.join(__dirname, "..") }
+			{ 
+				cwd: path.join(__dirname, ".."),
+				stdio: ["ignore", "ignore", "ignore"]
+			}
 		)
 		if (exitCode !== 0) {
 			console.error(`WARN: prebuild failed for ${version.runtime}@${version.target} (${version.arch})!`)
