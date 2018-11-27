@@ -293,3 +293,4 @@ build/
 
 # npm package files
 node-aead-crypto-*.tgz
+prebuilds/
