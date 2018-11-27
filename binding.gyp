@@ -1,7 +1,7 @@
 {
     "targets": [
         {
-            "target_name": "<(module_name)",
+            "target_name": "node-aead-crypto",
             "sources": [
                 "src/node-aes-ccm.cc",
                 "src/node-aes-gcm.cc",
@@ -19,13 +19,13 @@
                                     'variables': {
                                         'openssl_root%': 'C:/OpenSSL-Win64'
                                     },
-                                    #'libraries': [ '<(openssl_root)/lib/<!@(dir /B C:\OpenSSL-Win64\lib\libeay32.lib C:\OpenSSL-Win64\lib\libcrypto.lib)' ],
+                                    'libraries': [ '<(openssl_root)/lib/<!@(dir /B C:\OpenSSL-Win64\lib\libeay32.lib C:\OpenSSL-Win64\lib\libcrypto.lib)' ],
                                 },
                                 {
                                     'variables': {
                                         'openssl_root%': 'C:/OpenSSL-Win32'
                                     },
-                                    #'libraries': [ '<(openssl_root)/lib/<!@(dir /B C:\OpenSSL-Win32\lib\libeay32.lib C:\OpenSSL-Win32\lib\libcrypto.lib)' ],
+                                    'libraries': [ '<(openssl_root)/lib/<!@(dir /B C:\OpenSSL-Win32\lib\libeay32.lib C:\OpenSSL-Win32\lib\libcrypto.lib)' ],
                                 }
                             ],
                         ],
@@ -46,17 +46,6 @@
                     }
                 ],
             ],
-        },
-        {
-            "target_name": "action_after_build",
-            "type": "none",
-            "dependencies": [ "<(module_name)" ],
-            "copies": [
-                {
-                    "files": [ "<(PRODUCT_DIR)/<(module_name).node" ],
-                    "destination": "<(module_path)"
-                }
-            ]
         }
     ]
 }
