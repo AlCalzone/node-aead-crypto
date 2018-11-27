@@ -5,30 +5,30 @@ const os = require("os");
 const isWindows = /^win/.test(os.platform());
 
 const versions = [
-	{ runtime: "node", target: 48, arch: "x64" },
-	{ runtime: "node", target: 48, arch: "x64" },
-	{ runtime: "node", target: 48, arch: "x64" },
+	{ runtime: "node", target: "6.3.0", arch: "x64" },
+	{ runtime: "node", target: "6.3.0", arch: "x64" },
+	{ runtime: "node", target: "6.3.0", arch: "x64" },
 	{ runtime: "node", target: 57, arch: "x64" },
 	{ runtime: "node", target: 57, arch: "x64" },
 	{ runtime: "node", target: 57, arch: "x64" },
-	{ runtime: "electron", target: 48, arch: "x64" },
-	{ runtime: "electron", target: 48, arch: "x64" },
-	{ runtime: "electron", target: 48, arch: "x64" },
+	{ runtime: "electron", target: "6.3.0", arch: "x64" },
+	{ runtime: "electron", target: "6.3.0", arch: "x64" },
+	{ runtime: "electron", target: "6.3.0", arch: "x64" },
 	{ runtime: "electron", target: 57, arch: "x64" },
 	{ runtime: "electron", target: 57, arch: "x64" },
 	{ runtime: "electron", target: 57, arch: "x64" },
 ];
 if (isWindows) {
 	versions.push(
-		{ runtime: "node", target: 48, arch: "x86" },
-		{ runtime: "node", target: 48, arch: "x86" },
-		{ runtime: "node", target: 48, arch: "x86" },
+		{ runtime: "node", target: "6.3.0", arch: "x86" },
+		{ runtime: "node", target: "6.3.0", arch: "x86" },
+		{ runtime: "node", target: "6.3.0", arch: "x86" },
 		{ runtime: "node", target: 57, arch: "x86" },
 		{ runtime: "node", target: 57, arch: "x86" },
 		{ runtime: "node", target: 57, arch: "x86" },
-		{ runtime: "electron", target: 48, arch: "x86" },
-		{ runtime: "electron", target: 48, arch: "x86" },
-		{ runtime: "electron", target: 48, arch: "x86" },
+		{ runtime: "electron", target: "6.3.0", arch: "x86" },
+		{ runtime: "electron", target: "6.3.0", arch: "x86" },
+		{ runtime: "electron", target: "6.3.0", arch: "x86" },
 		{ runtime: "electron", target: 57, arch: "x86" },
 		{ runtime: "electron", target: 57, arch: "x86" },
 		{ runtime: "electron", target: 57, arch: "x86" },
@@ -36,9 +36,9 @@ if (isWindows) {
 }
 if (os.platform() === "linux") {
 	versions.push(
-		{ runtime: "node", target: 48, arch: "arm" },
-		{ runtime: "node", target: 48, arch: "arm" },
-		{ runtime: "node", target: 48, arch: "arm" },
+		{ runtime: "node", target: "6.3.0", arch: "arm" },
+		{ runtime: "node", target: "6.3.0", arch: "arm" },
+		{ runtime: "node", target: "6.3.0", arch: "arm" },
 		{ runtime: "node", target: 57, arch: "arm" },
 		{ runtime: "node", target: 57, arch: "arm" },
 		{ runtime: "node", target: 57, arch: "arm" },
