@@ -22,7 +22,7 @@ const getArchs = () => {
 		: isDarwin ? ["x64"]
 		: [];
 };
-const getRuntimes = (arch) => arch === "arm" ? ["node"] : ["node", "electron"];
+const getRuntimes = (arch) => (arch === "arm" || isWindows) ? ["node"] : ["node", "electron"];
 
 function getAllVersions() {
 	const ret = [];
@@ -45,11 +45,6 @@ async function main() {
 	for (const version of getAllVersions()) {
 		console.log();
 		console.log(`prebuilding binaries for ${version.runtime}@${version.target} (${version.arch})...`);
-		// if (version.arch === "arm") {
-		// 	await runCommand("node-gyp", ["configure", "--target_arch=arm"], {
-		// 		cwd: path.join(__dirname, ".."),
-		// 	});
-		// }
 		const { exitCode } = await runCommand(
 			executable,
 			[
@@ -65,7 +60,6 @@ async function main() {
 		)
 		if (exitCode !== 0) {
 			console.error(`WARN: prebuild failed for ${version.runtime}@${version.target} (${version.arch})!`)
-			// throw new Error(`prebuild exited with code ${exitCode}`);
 		}
 	}
 	process.exit(0);
