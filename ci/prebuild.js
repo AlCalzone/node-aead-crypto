@@ -19,8 +19,8 @@ const getRuntimeVersions = (runtime) => {
 const getArchs = () => {
 	return (isWindows || isLinux) ? ["ia32", "x64"]
 		: isARM ? ["arm"]
-		: isDarwin ? ["x64"]
-		: [];
+			: isDarwin ? ["x64"]
+				: [];
 };
 const getRuntimes = (arch) => arch === "arm" ? ["node"] : ["node", "electron"];
 
@@ -45,6 +45,12 @@ async function main() {
 	for (const version of getAllVersions()) {
 		console.log();
 		console.log(`prebuilding binaries for ${version.runtime}@${version.target} (${version.arch})...`);
+		if (version.arch === "arm") {
+			await runCommand("node-gyp", ["configure", "--target_arch=arm"], {
+				cwd: path.join(__dirname, ".."),
+				stdio: ["ignore", "ignore", "ignore"]
+			});
+		}
 		const { exitCode } = await runCommand(
 			executable,
 			[
@@ -53,7 +59,7 @@ async function main() {
 				"-u", token,
 				"--arch", version.arch
 			],
-			{ 
+			{
 				cwd: path.join(__dirname, ".."),
 				stdio: ["ignore", "ignore", "ignore"]
 			}
