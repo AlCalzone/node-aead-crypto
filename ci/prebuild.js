@@ -5,6 +5,7 @@ const os = require("os");
 const isWindows = /^win/.test(os.platform());
 const isLinux = os.platform() === "linux";
 const isDarwin = os.platform() === "darwin";
+const isARM = isLinux && process.env.ARCH === "arm"; // This is one part of the build matrix
 
 // Take the newest version for each ABI version
 const getRuntimeVersions = (runtime) => {
@@ -16,10 +17,10 @@ const getRuntimeVersions = (runtime) => {
 }
 
 const getArchs = () => {
-	return isWindows ? ["ia32", "x64"]
-		: isLinux ? ["ia32", "x64", "arm"]
-		: ["x64"] // darwin
-		;
+	return (isWindows || isLinux) ? ["ia32", "x64"]
+		: isARM ? ["arm"]
+		: isDarwin ? ["x64"]
+		: [];
 };
 const getRuntimes = (arch) => arch === "arm" ? ["node"] : ["node", "electron"];
 
