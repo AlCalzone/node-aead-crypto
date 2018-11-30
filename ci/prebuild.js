@@ -5,6 +5,7 @@ const os = require("os");
 const isWindows = /^win/.test(os.platform());
 const isLinux = os.platform() === "linux";
 const isDarwin = os.platform() === "darwin";
+const isARM = isLinux && process.env.ARCH === "arm"; // This is one part of the build matrix
 
 // Take the newest version for each ABI version
 const getRuntimeVersions = (runtime) => {
@@ -16,10 +17,10 @@ const getRuntimeVersions = (runtime) => {
 }
 
 const getArchs = () => {
-	return isWindows ? ["ia32", "x64"]
-		: isLinux ? ["ia32", "x64", "arm"]
-		: ["x64"] // darwin
-		;
+	return isARM ? ["arm"]
+		: (isWindows || isLinux) ? ["ia32", "x64"]
+		: isDarwin ? ["x64"]
+		: [];
 };
 const getRuntimes = (arch) => arch === "arm" ? ["node"] : ["node", "electron"];
 
@@ -44,6 +45,11 @@ async function main() {
 	for (const version of getAllVersions()) {
 		console.log();
 		console.log(`prebuilding binaries for ${version.runtime}@${version.target} (${version.arch})...`);
+		// if (version.arch === "arm") {
+		// 	await runCommand("node-gyp", ["configure", "--target_arch=arm"], {
+		// 		cwd: path.join(__dirname, ".."),
+		// 	});
+		// }
 		const { exitCode } = await runCommand(
 			executable,
 			[
@@ -52,7 +58,7 @@ async function main() {
 				"-u", token,
 				"--arch", version.arch
 			],
-			{ 
+			{
 				cwd: path.join(__dirname, ".."),
 				stdio: ["ignore", "ignore", "ignore"]
 			}

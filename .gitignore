@@ -294,3 +294,4 @@ build/
 # npm package files
 node-aead-crypto-*.tgz
 prebuilds/
+# package-lock.json

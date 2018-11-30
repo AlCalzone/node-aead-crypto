@@ -6,6 +6,7 @@ branches:
     - /^v\d+\.\d+\.\d+(\-[a-zA-Z0-9]+)?$/
 
 language: node_js
+node_js: 8
 
 env:
   global:
@@ -67,27 +68,8 @@ include: &arm
 matrix:
   include:
     - <<: *linux
-      node_js: 8
-#   - <<: *osx
-#     node_js: 4
-#   - <<: *osx
-#     node_js: 6
     - <<: *osx
-      node_js: 8
-
-#   - <<: *linux
-#     node_js: 4
-#   - <<: *linux
-#     node_js: 6
-#   - <<: *linux
-#     node_js: 8
-
-#   - <<: *arm
-#     node_js: 4
-#   - <<: *arm
-#     node_js: 6
-#   - <<: *arm
-#     node_js: 8
+    - <<: *arm
 
 before_install:
 # Export neccessary env vars so gyp finds the compilers
