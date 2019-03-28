@@ -1,4 +1,7 @@
 # node-aead-crypto
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/AlCalzone/node-aead-crypto.svg)](https://greenkeeper.io/)
+
 OpenSSL bindings for AEAD ciphers
 
 **Note: This module is not necessary on NodeJS 10+ because you can now provide the `authTagLength`.**
