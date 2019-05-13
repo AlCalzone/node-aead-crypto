@@ -43,7 +43,7 @@
     "node": ">4 <10"
   },
   "devDependencies": {
-    "@types/node": "^11.12.1",
+    "@types/node": "^12.0.0",
     "buffertools": "^2.1.6",
     "mocha": "^6.0.2",
     "prebuild": "^8.1.2",
