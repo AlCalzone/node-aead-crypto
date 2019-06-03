@@ -46,7 +46,7 @@
     "@types/node": "^12.0.0",
     "buffertools": "^2.1.6",
     "mocha": "^6.0.2",
-    "prebuild": "^8.1.2",
+    "prebuild": "^9.0.0",
     "should": "^13.2.1"
   }
 }
