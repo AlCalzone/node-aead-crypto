@@ -23,7 +23,8 @@ include: &osx
       packages:
       - gcc-6
       - g++-6
-      - gcc-multilib
+      - gcc-6-multilib
+      - g++-6-multilib
   env:
   - LABEL=OSX
     ARCH=x64
@@ -38,7 +39,8 @@ include: &linux
       packages:
       - gcc-6
       - g++-6
-      - gcc-multilib
+      - gcc-6-multilib
+      - g++-6-multilib
   env:
   - LABEL=LINUX
     ARCH=x64
