@@ -1,6 +1,6 @@
 {
   "name": "node-aead-crypto",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "description": "Node.js module which provides OpenSSL bindings for AEAD ciphers",
   "main": "index.js",
   "types": "index.d.ts",
@@ -43,7 +43,7 @@
     "node": ">4 <10"
   },
   "devDependencies": {
-    "@types/node": "^13.1.1",
+    "@types/node": "^13.5.0",
     "buffertools": "^2.1.6",
     "mocha": "^7.0.0",
     "prebuild": "^10.0.0",

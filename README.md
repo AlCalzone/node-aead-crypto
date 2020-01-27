@@ -15,6 +15,9 @@ TODO
 
 ## Changelog
 
+### 2.2.0 (2020-01-27)
+* (AlCalzone) Replaced the node version comparison in `preinstall` with a check if all ciphers are natively available
+
 ### 2.1.1 (2018-11-27)
 * (AlCalzone) Dropped `node-pre-gyp` for `prebuild`
 
