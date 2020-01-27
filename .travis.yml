@@ -23,6 +23,7 @@ include: &osx
       packages:
       - gcc-6
       - g++-6
+      - gcc-multilib
   env:
   - LABEL=OSX
     ARCH=x64
@@ -37,6 +38,7 @@ include: &linux
       packages:
       - gcc-6
       - g++-6
+      - gcc-multilib
   env:
   - LABEL=LINUX
     ARCH=x64
@@ -55,6 +57,7 @@ include: &arm
       - g++-6
       - gcc-arm-linux-gnueabihf
       - g++-arm-linux-gnueabihf
+      - gcc-multilib
   env:
   - LABEL=ARM
     ARCH=arm
