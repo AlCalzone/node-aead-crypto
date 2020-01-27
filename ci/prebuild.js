@@ -10,9 +10,9 @@ const isARM = isLinux && process.env.ARCH === "arm"; // This is one part of the 
 // Take the newest version for each ABI version
 const getRuntimeVersions = (runtime) => {
 	// source: https://nodejs.org/en/download/releases/
-	return runtime === "node" ? ["6.14.4", "8.13.0"]
+	return runtime === "node" ? ["6.17.2", "8.17.0"]
 		// source: https://github.com/lgeiger/electron-abi
-		: /* runtime === "electron" */["1.2.8", "1.3.13", "1.4.16", "1.7.10", "2.0.0", "3.0.0"]
+		: /* runtime === "electron" */["1.2.8", "1.3.13", "1.4.16", "1.7.10", "2.0.0", "3.0.0", "4.0.0", "4.0.4", "5.0.0", "6.0.0", "7.0.0"]
 		;
 }
 
