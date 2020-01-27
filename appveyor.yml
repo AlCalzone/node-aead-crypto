@@ -7,7 +7,7 @@ branches:
 
 environment:
   PREBUILD_TOKEN:
-    secure: odSYZ6UhqumsDb9u70zaUy0bsG/tsASZ3ZHTP3BDUb8hMinN3yeVMific+dC/8ir
+    secure: tfNvfo6nl0UbRsDMHBejfvzcMqQWQdXBeY1v8YK9Pi/8Qp3pFZX6Jb20amqaOz2y
 
   GYP_MSVS_VERSION: 2013
 
