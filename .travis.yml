@@ -21,8 +21,8 @@ include: &osx
       sources: 
       - 'ubuntu-toolchain-r-test'
       packages:
-      - gcc-4.9
-      - g++-4.9  
+      - gcc-6
+      - g++-6
   env:
   - LABEL=OSX
     ARCH=x64
@@ -35,13 +35,13 @@ include: &linux
       sources: 
       - 'ubuntu-toolchain-r-test'
       packages:
-      - gcc-4.9
-      - g++-4.9  
+      - gcc-6
+      - g++-6
   env:
   - LABEL=LINUX
     ARCH=x64
-    EXPORT_CXX=g++-4.9
-    EXPORT_CC=gcc-4.9
+    EXPORT_CXX=g++-6
+    EXPORT_CC=gcc-6
 
 include: &arm
   sudo: required
@@ -51,15 +51,15 @@ include: &arm
       sources: 
       - 'ubuntu-toolchain-r-test'
       packages:
-      - gcc-4.9
-      - g++-4.9  
+      - gcc-6
+      - g++-6
       - gcc-arm-linux-gnueabihf
       - g++-arm-linux-gnueabihf
   env:
   - LABEL=ARM
     ARCH=arm
-    EXPORT_CXX=g++-4.9
-    EXPORT_CC=gcc-4.9
+    EXPORT_CXX=g++-6
+    EXPORT_CC=gcc-6
     EXPORT_PRE_CXX=arm-linux-gnueabihf-g++
     EXPORT_PRE_CC=arm-linux-gnueabihf-gcc
     EXPORT_PRE_LINK=arm-linux-gnueabihf-g++
