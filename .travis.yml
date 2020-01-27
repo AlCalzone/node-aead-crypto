@@ -57,7 +57,6 @@ include: &arm
       - g++-6
       - gcc-arm-linux-gnueabihf
       - g++-arm-linux-gnueabihf
-      - gcc-multilib
   env:
   - LABEL=ARM
     ARCH=arm
