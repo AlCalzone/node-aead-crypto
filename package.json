@@ -45,7 +45,7 @@
   "devDependencies": {
     "@types/node": "^13.5.0",
     "buffertools": "^2.1.6",
-    "mocha": "^7.0.0",
+    "mocha": "^7.2.0",
     "prebuild": "^10.0.0",
     "should": "^13.2.1"
   }
