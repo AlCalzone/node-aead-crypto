@@ -14,7 +14,7 @@ const getRuntimeVersions = (runtime) => {
 		// source: https://github.com/lgeiger/electron-abi
 		: /* runtime === "electron" */["1.2.8", "1.3.13", "1.4.16", "1.7.10", "2.0.0", "3.0.0", "4.0.0", "4.0.4", "5.0.0", "6.0.0", "7.0.0"]
 		;
-}
+};
 
 const getArchs = () => {
 	return isARM ? ["arm"]
@@ -66,15 +66,12 @@ async function main() {
 }
 main();
 
+/**
+ * @param {string} command
+ * @param {string[]} args
+ * @param {{ cwd?: string; stdio?: string[]; stdin?: any; stdout?: any; stderr?: any; }} options
+ */
 function runCommand(command, args, options) {
-	if (typeof args === 'object' && !Array.isArray(args)) {
-		// no args were given
-		options = args;
-		args = undefined;
-	}
-	if (options == null) options = {};
-	if (args == null) args = [];
-
 	/** @type {import("child_process").SpawnOptions} */
 	const spawnOptions = {
 		stdio: [
@@ -87,7 +84,7 @@ function runCommand(command, args, options) {
 	// Now execute the npm process and avoid throwing errors
 	return new Promise((resolve) => {
 		try {
-			const cmd = spawn(command, [].concat(args), spawnOptions)
+			/* const cmd = */spawn(command, [].concat(args), spawnOptions)
 				.on("close", (code, signal) => {
 					resolve({
 						exitCode: code,
