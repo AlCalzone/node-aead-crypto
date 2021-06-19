@@ -14,6 +14,8 @@ I've updated both to compile on Windows machines and included configuration to a
 TODO
 
 ## Changelog
+### 2.2.1 (2021-06-19)
+* (AlCalzone) Update dependencies
 
 ### 2.2.0 (2020-01-27)
 * (AlCalzone) Replaced the node version comparison in `preinstall` with a check if all ciphers are natively available
