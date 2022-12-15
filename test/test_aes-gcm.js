@@ -427,7 +427,7 @@ describe('node-aes-gcm', function () {
     before(function (done) {
       key = new Buffer('8888888888888888');
       iv = new Buffer('666666666666');
-      fs.readFile('./build/Release/node_aead_crypto.node', function (err, data) {
+      fs.readFile('./build/Release/node-aead-crypto.node', function (err, data) {
         if (err) throw err;
         plaintext = data;
         done();
