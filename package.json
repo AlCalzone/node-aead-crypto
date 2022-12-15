@@ -1,6 +1,6 @@
 {
   "name": "node-aead-crypto",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Node.js module which provides OpenSSL bindings for AEAD ciphers",
   "main": "index.js",
   "types": "index.d.ts",
@@ -9,7 +9,7 @@
     "prepublishOnly": "npm ls",
     "install:rpi1": "prebuild-install --build-from-source",
     "install:default": "prebuild-install || node-gyp rebuild",
-    "preinstall": "node lib/preinstall.js",
+    "//preinstall": "node lib/preinstall.js",
     "install": "node lib/install.js"
   },
   "repository": {

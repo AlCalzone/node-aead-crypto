@@ -14,6 +14,9 @@ I've updated both to compile on Windows machines and included configuration to a
 TODO
 
 ## Changelog
+### 2.2.2 (2022-12-15)
+* (AlCalzone) Disable preinstall script entirely to support Electron environments
+
 ### 2.2.1 (2021-06-19)
 * (AlCalzone) Update dependencies
 
