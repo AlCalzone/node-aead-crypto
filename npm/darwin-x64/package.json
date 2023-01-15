@@ -1,0 +1,18 @@
+{
+  "name": "node-aead-crypto-darwin-x64",
+  "version": "0.0.0",
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "main": "node-aead-crypto.darwin-x64.node",
+  "files": [
+    "node-aead-crypto.darwin-x64.node"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  }
+}

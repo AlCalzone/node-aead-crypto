@@ -1,52 +1,40 @@
 {
   "name": "node-aead-crypto",
-  "version": "2.2.2",
-  "description": "Node.js module which provides OpenSSL bindings for AEAD ciphers",
+  "version": "0.0.0",
   "main": "index.js",
   "types": "index.d.ts",
-  "scripts": {
-    "test": "mocha -R spec",
-    "prepublishOnly": "npm ls",
-    "install:rpi1": "prebuild-install --build-from-source",
-    "install:default": "prebuild-install || node-gyp rebuild",
-    "//preinstall": "node lib/preinstall.js",
-    "install": "node lib/install.js"
+  "napi": {
+    "name": "node-aead-crypto",
+    "triples": {
+      "additional": [
+        "aarch64-apple-darwin",
+        "aarch64-linux-android",
+        "aarch64-unknown-linux-gnu",
+        "aarch64-unknown-linux-musl",
+        "aarch64-pc-windows-msvc",
+        "armv7-unknown-linux-gnueabihf",
+        "x86_64-unknown-linux-musl",
+        "x86_64-unknown-freebsd",
+        "i686-pc-windows-msvc",
+        "armv7-linux-androideabi"
+      ]
+    }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AlCalzone/node-aead-crypto.git"
-  },
-  "keywords": [
-    "openssl",
-    "aead",
-    "aes-ccm",
-    "aes-gcm"
-  ],
-  "author": "AlCalzone <d.griesel@gmx.net>",
-  "contributors": [
-    "Patrick Van Oosterwijck <patrick@silicognition.com>",
-    "Jonathan Lima",
-    "Bryce Kahle <bryce@particle.io>"
-  ],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/AlCalzone/node-aead-crypto/issues"
-  },
-  "homepage": "https://github.com/AlCalzone/node-aead-crypto#readme",
-  "gypfile": true,
-  "dependencies": {
-    "bindings": "^1.5.0",
-    "nan": "2.14.x",
-    "prebuild-install": "^6.1.3"
+  "devDependencies": {
+    "@napi-rs/cli": "^2.2.0",
+    "ava": "^5.1.1"
   },
   "engines": {
-    "node": ">4"
+    "node": ">= 10"
   },
-  "devDependencies": {
-    "@types/node": "^14.0.6",
-    "buffertools": "^2.1.6",
-    "mocha": "^7.2.0",
-    "prebuild": "^10.0.0",
-    "should": "^13.2.1"
-  }
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release",
+    "build:debug": "napi build --platform",
+    "prepublishOnly": "napi prepublish -t npm",
+    "version": "napi version",
+    "test": "ava"
+  },
+  "packageManager": "yarn@3.3.1"
 }

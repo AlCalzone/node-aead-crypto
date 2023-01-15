@@ -1,6 +1,10 @@
-.npmignore
-build/
-appveyor.yml
-.travis.yml
-node-aead-crypto-*.tgz
-ci/
+target
+Cargo.lock
+.cargo
+.github
+npm
+.eslintrc
+.prettierignore
+rustfmt.toml
+yarn.lock
+*.node
