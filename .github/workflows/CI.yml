@@ -157,7 +157,7 @@ jobs:
         if: ${{ matrix.settings.setup }}
         shell: bash
       - name: Install dependencies
-        run: yarn install --ignore-scripts --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
+        run: yarn install --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
       - name: Build
         run: ${{ matrix.settings.build }}
         shell: bash
@@ -204,7 +204,7 @@ jobs:
             whoami
             env
             freebsd-version
-            yarn install --ignore-scripts --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
+            yarn install --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
             yarn build
             strip -x *.node
             yarn test
@@ -245,7 +245,7 @@ jobs:
           path: node_modules
           key: npm-cache-test-${{ matrix.settings.target }}-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
-        run: yarn install --ignore-scripts --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
+        run: yarn install --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
@@ -282,7 +282,7 @@ jobs:
           path: node_modules
           key: npm-cache-test-linux-x64-gnu-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
-        run: yarn install --ignore-scripts --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
+        run: yarn install --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
@@ -319,7 +319,7 @@ jobs:
           path: node_modules
           key: npm-cache-test-x86_64-unknown-linux-musl-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
-        run: yarn install --ignore-scripts --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
+        run: yarn install --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
@@ -359,7 +359,7 @@ jobs:
           path: node_modules
           key: npm-cache-test-linux-aarch64-gnu-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
-        run: yarn install --ignore-scripts --ignore-platform --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
+        run: yarn install --ignore-platform --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -391,7 +391,7 @@ jobs:
           path: node_modules
           key: npm-cache-test-linux-aarch64-musl-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
-        run: yarn install --ignore-scripts --ignore-platform --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
+        run: yarn install --ignore-platform --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -430,7 +430,7 @@ jobs:
           path: node_modules
           key: npm-cache-test-linux-arm-gnueabihf-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
-        run: yarn install --ignore-scripts --ignore-platform --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
+        run: yarn install --ignore-platform --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -467,7 +467,7 @@ jobs:
           restore-keys: |
             npm-cache-
       - name: Install dependencies
-        run: yarn install --ignore-scripts --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
+        run: yarn install --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
       - name: Download all artifacts
         uses: actions/download-artifact@v2
         with:
