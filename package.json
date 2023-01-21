@@ -1,8 +1,8 @@
 {
   "name": "node-aead-crypto",
   "version": "0.0.0",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "mod.js",
+  "types": "mod.d.ts",
   "napi": {
     "name": "node-aead-crypto",
     "triples": {
