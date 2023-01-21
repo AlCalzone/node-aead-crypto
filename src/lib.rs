@@ -10,6 +10,7 @@ use napi::{bindgen_prelude::*, Error};
 pub type Result<T> = std::result::Result<T, Error>;
 
 use aes::{Aes128, Aes192, Aes256};
+use aes_gcm::AesGcm;
 use ccm::{
   aead::{generic_array::GenericArray, Aead, KeyInit, Payload},
   consts::{U10, U11, U12, U13, U14, U16, U4, U6, U7, U8, U9},
@@ -32,7 +33,7 @@ pub struct DecryptionResult {
   pub auth_ok: bool,
 }
 
-fn ccm_encrypt_worker(
+fn encrypt_worker(
   cipher: impl Aead,
   iv: Buffer,
   plaintext: Buffer,
@@ -57,7 +58,7 @@ fn ccm_encrypt_worker(
   });
 }
 
-fn ccm_decrypt_worker(
+fn decrypt_worker(
   cipher: impl Aead,
   iv: Buffer,
   ciphertext: Buffer,
@@ -81,6 +82,61 @@ fn ccm_decrypt_worker(
   }
 }
 
+macro_rules! gcm_impls {
+  ($($key_len_8: expr),+) => {
+    #[napi]
+    pub fn gcm_encrypt(
+      key: Buffer,
+      iv: Buffer,
+      plaintext: Buffer,
+      aad: Buffer,
+    ) -> Result<EncryptionResult> {
+      if (iv.len() != 12) {
+        return Err(napi::Error::from_reason(format!("Invalid IV size, must be 12, got {}", iv.len())));
+      }
+      match key.len() * 8 {
+        $($key_len_8 => {
+          return encrypt_worker(
+            paste!{ AesGcm::<[<Aes $key_len_8>], U12>::new(GenericArray::from_slice(key.as_ref())) },
+            iv,
+            plaintext,
+            aad,
+            16,
+          );
+        },)+
+        _ => Err(napi::Error::from_reason("Invalid key size")),
+      }
+    }
+
+    #[napi]
+    pub fn gcm_decrypt(
+      key: Buffer,
+      iv: Buffer,
+      ciphertext: Buffer,
+      aad: Buffer,
+      auth_tag: Buffer,
+    ) -> Result<DecryptionResult> {
+      if (iv.len() != 12) {
+        return Err(napi::Error::from_reason(format!("Invalid IV size, must be 12, got {}", iv.len())));
+      }
+      match key.len() * 8 {
+        $($key_len_8 => {
+          return decrypt_worker(
+            paste!{ AesGcm::<[<Aes $key_len_8>], U12>::new(GenericArray::from_slice(key.as_ref())) },
+            iv,
+            ciphertext,
+            aad,
+            auth_tag,
+          );
+        },)+
+        _ => Err(napi::Error::from_reason("Invalid key size")),
+      }
+    }
+  };
+}
+
+gcm_impls!(128, 192, 256);
+
 macro_rules! ccm_impls {
   ($(($key_len_8: expr, $auth_tag_len: expr, $iv_len: expr)),+) => {
     #[napi]
@@ -93,7 +149,7 @@ macro_rules! ccm_impls {
     ) -> Result<EncryptionResult> {
       match (key.len() * 8, auth_tag_len, iv.len()) {
         $(($key_len_8, $auth_tag_len, $iv_len) => {
-          return ccm_encrypt_worker(
+          return encrypt_worker(
             paste!{ Ccm::<[<Aes $key_len_8>], [<U $auth_tag_len>], [<U $iv_len>]>::new(GenericArray::from_slice(key.as_ref())) },
             iv,
             plaintext,
@@ -114,17 +170,17 @@ macro_rules! ccm_impls {
       auth_tag: Buffer,
     ) -> Result<DecryptionResult> {
       match (key.len() * 8, auth_tag.len(), iv.len()) {
-      $(($key_len_8, $auth_tag_len, $iv_len) => {
-        return ccm_decrypt_worker(
-          paste!{ Ccm::<[<Aes $key_len_8>], [<U $auth_tag_len>], [<U $iv_len>]>::new(GenericArray::from_slice(key.as_ref())) },
-          iv,
-          ciphertext,
-          aad,
-          auth_tag,
-        );
-      },)+
-      _ => Err(napi::Error::from_reason("Invalid combination of key size, IV size and auth tag length")),
-    }
+        $(($key_len_8, $auth_tag_len, $iv_len) => {
+          return decrypt_worker(
+            paste!{ Ccm::<[<Aes $key_len_8>], [<U $auth_tag_len>], [<U $iv_len>]>::new(GenericArray::from_slice(key.as_ref())) },
+            iv,
+            ciphertext,
+            aad,
+            auth_tag,
+          );
+        },)+
+        _ => Err(napi::Error::from_reason("Invalid combination of key size, IV size and auth tag length")),
+      }
     }
   };
 }

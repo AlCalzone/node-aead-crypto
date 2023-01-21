@@ -246,7 +246,9 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { ccmEncrypt, ccmDecrypt } = nativeBinding
+const { gcmEncrypt, gcmDecrypt, ccmEncrypt, ccmDecrypt } = nativeBinding
 
+module.exports.gcmEncrypt = gcmEncrypt
+module.exports.gcmDecrypt = gcmDecrypt
 module.exports.ccmEncrypt = ccmEncrypt
 module.exports.ccmDecrypt = ccmDecrypt

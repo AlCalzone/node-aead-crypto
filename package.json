@@ -23,7 +23,8 @@
   "license": "MIT",
   "devDependencies": {
     "@napi-rs/cli": "^2.2.0",
-    "ava": "^5.1.1"
+    "mocha": "^10.2.0",
+    "should": "^13.2.3"
   },
   "engines": {
     "node": ">= 10"
@@ -34,7 +35,7 @@
     "build:debug": "napi build --platform",
     "prepublishOnly": "napi prepublish -t npm",
     "version": "napi version",
-    "test": "ava"
+    "test": "node test/test_aes-ccm.js && mocha test/test_aes-gcm.js"
   },
   "packageManager": "yarn@3.3.1"
 }

@@ -11,5 +11,7 @@ export interface DecryptionResult {
   plaintext: Buffer
   auth_ok: boolean
 }
+export function gcmEncrypt(key: Buffer, iv: Buffer, plaintext: Buffer, aad: Buffer): EncryptionResult
+export function gcmDecrypt(key: Buffer, iv: Buffer, ciphertext: Buffer, aad: Buffer, authTag: Buffer): DecryptionResult
 export function ccmEncrypt(key: Buffer, iv: Buffer, plaintext: Buffer, aad: Buffer, authTagLen: number): EncryptionResult
 export function ccmDecrypt(key: Buffer, iv: Buffer, ciphertext: Buffer, aad: Buffer, authTag: Buffer): DecryptionResult
