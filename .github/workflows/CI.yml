@@ -1,7 +1,7 @@
 name: CI
 env:
   DEBUG: napi:*
-  APP_NAME: napi-rs-repro
+  APP_NAME: node-aead-crypto
   MACOSX_DEPLOYMENT_TARGET: '10.13'
 'on':
   push:
