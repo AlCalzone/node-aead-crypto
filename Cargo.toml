@@ -21,4 +21,5 @@ napi-build = "1.2.1"
 
 [profile.release]
 lto = true
-opt-level = 3
+# opt-level = 3
+strip = "debuginfo"
