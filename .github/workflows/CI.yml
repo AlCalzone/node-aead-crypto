@@ -354,7 +354,7 @@ jobs:
           path: node_modules
           key: npm-cache-test-linux-aarch64-gnu-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
-        run: yarn install --ignore-platform --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
+        run: yarn install --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -386,7 +386,7 @@ jobs:
           path: node_modules
           key: npm-cache-test-linux-aarch64-musl-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
-        run: yarn install --ignore-platform --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
+        run: yarn install --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -425,7 +425,7 @@ jobs:
           path: node_modules
           key: npm-cache-test-linux-arm-gnueabihf-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
-        run: yarn install --ignore-platform --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
+        run: yarn install --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
