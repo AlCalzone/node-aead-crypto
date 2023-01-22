@@ -1,10 +1,6 @@
 var assert = require("assert");
 
-const mod = require("..");
-const ccm = {
-  encrypt: mod.ccmEncrypt,
-  decrypt: mod.ccmDecrypt,
-};
+const { ccm } = require("..");
 
 var TEST_CASES = [
   {
