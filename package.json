@@ -1,8 +1,9 @@
 {
   "name": "node-aead-crypto",
-  "version": "0.0.0",
-  "main": "mod.js",
-  "types": "mod.d.ts",
+  "version": "3.0.0-alpha.0",
+  "description": "Node.js module which provides OpenSSL bindings for AEAD ciphers",
+  "main": "index.js",
+  "types": "index.d.ts",
   "napi": {
     "name": "napi-rs-repro",
     "triples": {
@@ -19,9 +20,26 @@
         "armv7-linux-androideabi",
         "universal-apple-darwin"
       ]
-    }
+    },
+    "js": "lib.js",
+    "dts": "lib.d.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlCalzone/node-aead-crypto.git"
+  },
+  "keywords": [
+    "openssl",
+    "aead",
+    "aes-ccm",
+    "aes-gcm"
+  ],
+  "author": "AlCalzone <d.griesel@gmx.net>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlCalzone/node-aead-crypto/issues"
+  },
+  "homepage": "https://github.com/AlCalzone/node-aead-crypto#readme",
   "devDependencies": {
     "@napi-rs/cli": "^2.14.4",
     "mocha": "^10.2.0",
@@ -32,8 +50,8 @@
   },
   "scripts": {
     "artifacts": "napi artifacts",
-    "build": "napi build --platform --release",
-    "build:debug": "napi build --platform",
+    "build": "napi build --platform --release --js lib.js --dts lib.d.ts",
+    "build:debug": "napi build --platform --js lib.js --dts lib.d.ts",
     "prepublishOnly": "napi prepublish -t npm",
     "universal": "napi universal",
     "version": "napi version",
