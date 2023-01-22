@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "napi": {
-    "name": "napi-rs-repro",
+    "name": "node-aead-crypto",
     "triples": {
       "additional": [
         "aarch64-apple-darwin",
