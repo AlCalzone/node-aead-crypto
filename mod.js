@@ -1,18 +1,17 @@
-import {
-	DecryptionResult,
-	EncryptionResult,
+const {
 	ccmDecrypt,
 	ccmEncrypt,
 	gcmDecrypt,
 	gcmEncrypt
-} from "./index.js";
+} = require("./index.js");
 
-export const ccm = {
-	encrypt: ccmEncrypt,
-	decrypt: ccmDecrypt
-};
-
-export const gcm = {
-	encrypt: gcmEncrypt,
-	decrypt: gcmDecrypt
-};
+module.exports = {
+	ccm: {
+		encrypt: ccmEncrypt,
+		decrypt: ccmDecrypt
+	},
+	gcm: {
+		encrypt: gcmEncrypt,
+		decrypt: gcmDecrypt
+	}
+}
