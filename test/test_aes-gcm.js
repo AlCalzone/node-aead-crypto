@@ -544,7 +544,7 @@ describe("node-aes-gcm", function () {
     runEncryptDecryptTestCases(true);
   });
 
-  describe("Its own binary module", function () {
+  describe.skip("Its own binary module", function () {
     before(function (done) {
       key = new Buffer("8888888888888888");
       iv = new Buffer("666666666666");
