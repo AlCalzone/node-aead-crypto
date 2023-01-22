@@ -4,7 +4,7 @@
   "main": "mod.js",
   "types": "mod.d.ts",
   "napi": {
-    "name": "node-aead-crypto",
+    "name": "napi-rs-repro",
     "triples": {
       "additional": [
         "aarch64-apple-darwin",
@@ -16,13 +16,14 @@
         "x86_64-unknown-linux-musl",
         "x86_64-unknown-freebsd",
         "i686-pc-windows-msvc",
-        "armv7-linux-androideabi"
+        "armv7-linux-androideabi",
+        "universal-apple-darwin"
       ]
     }
   },
   "license": "MIT",
   "devDependencies": {
-    "@napi-rs/cli": "^2.2.0",
+    "@napi-rs/cli": "^2.14.4",
     "mocha": "^10.2.0",
     "should": "^13.2.3"
   },
@@ -34,6 +35,7 @@
     "build": "napi build --platform --release",
     "build:debug": "napi build --platform",
     "prepublishOnly": "napi prepublish -t npm",
+    "universal": "napi universal",
     "version": "napi version",
     "test": "node test/test_aes-ccm.js && mocha test/test_aes-gcm.js"
   },
