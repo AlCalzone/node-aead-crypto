@@ -11,7 +11,7 @@ AEAD ciphers for Node.js and Electron
 TODO
 
 ## Changelog
-### 3.0.0-alpha.0 (2023-01-22)
+### 3.0.0 (2023-01-26)
 Migrated the codebase to Rust and N-API. This module is now using [RustCrypto](https://github.com/RustCrypto) instead of OpenSSL due to a [bug](https://github.com/sfackler/rust-openssl/issues/1593) in the Rust OpenSSL bindings.
 This change should make it possible to use the module on Electron again, which still does not support AEAD ciphers natively.
 
