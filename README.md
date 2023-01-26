@@ -1,5 +1,5 @@
 # node-aead-crypto
-OpenSSL bindings for AEAD ciphers
+AEAD ciphers for Node.js and Electron
 
 **Note: This module is not necessary on NodeJS 10+ because you can now provide the `authTagLength`.**
 
@@ -7,13 +7,14 @@ OpenSSL bindings for AEAD ciphers
 * AES-CCM
 * AES-GCM
 
-This package is based on code from https://github.com/spark/node-aes-ccm and https://github.com/xorbit/node-aes-gcm.
-I've updated both to compile on Windows machines and included configuration to automatically precompile binaries for multiple platforms (Windows, Linux, OSX, ARM).
-
 ## Usage
 TODO
 
 ## Changelog
+### 3.0.0-alpha.0 (2023-01-22)
+Migrated the codebase to Rust and N-API. This module is now using [RustCrypto](https://github.com/RustCrypto) instead of OpenSSL due to a [bug](https://github.com/sfackler/rust-openssl/issues/1593) in the Rust OpenSSL bindings.
+This change should make it possible to use the module on Electron again, which still does not support AEAD ciphers natively.
+
 ### 2.2.2 (2022-12-15)
 * (AlCalzone) Disable preinstall script entirely to support Electron environments
 

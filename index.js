@@ -1,12 +1,17 @@
-var binding = require("bindings")("node-aead-crypto.node");
+const {
+	ccmDecrypt,
+	ccmEncrypt,
+	gcmDecrypt,
+	gcmEncrypt
+} = require("./lib.js");
 
 module.exports = {
-    ccm: {
-        encrypt: binding.CcmEncrypt,
-        decrypt: binding.CcmDecrypt,
-    },
-    gcm: {
-        encrypt: binding.GcmEncrypt,
-        decrypt: binding.GcmDecrypt,
-    }
+	ccm: {
+		encrypt: ccmEncrypt,
+		decrypt: ccmDecrypt
+	},
+	gcm: {
+		encrypt: gcmEncrypt,
+		decrypt: gcmDecrypt
+	}
 }
