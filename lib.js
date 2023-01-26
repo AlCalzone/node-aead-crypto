@@ -142,21 +142,6 @@ switch (platform) {
         throw new Error(`Unsupported architecture on macOS: ${arch}`)
     }
     break
-  case 'freebsd':
-    if (arch !== 'x64') {
-      throw new Error(`Unsupported architecture on FreeBSD: ${arch}`)
-    }
-    localFileExisted = existsSync(join(__dirname, 'node-aead-crypto.freebsd-x64.node'))
-    try {
-      if (localFileExisted) {
-        nativeBinding = require('./node-aead-crypto.freebsd-x64.node')
-      } else {
-        nativeBinding = require('node-aead-crypto-freebsd-x64')
-      }
-    } catch (e) {
-      loadError = e
-    }
-    break
   case 'linux':
     switch (arch) {
       case 'x64':
